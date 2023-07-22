@@ -1,0 +1,57 @@
+.layout{
+    height: 100vh;
+    overflow-y: scroll;
+}
+.sider{
+    display: flex;
+    align-content: space-between;
+    height: 100%;
+    flex-wrap: wrap;
+}
+
+.logo {
+    margin-left: 7px;
+    color: #80b5ff;
+}
+
+.sidermenu{
+    width: -webkit-fill-available;
+}
+
+.logoutbutton{
+    width: -webkit-fill-available;
+    margin-left: 5px;
+    margin-right: 5px;
+}
+
+.collapsediv{
+    display: flex;
+    justify-content: center;
+    width: -webkit-fill-available;
+}
+.collapsebutton{
+    font-size: 25px;
+    display: flex;
+    align-items: center;
+    margin: 5px;
+    justify-content: center;
+}
+
+.content{
+    padding-left: 10px;
+    min-height: 280;
+    overflow-y: scroll;
+}
+.collapsed{
+    pointer-events: none;
+}
+
+.content::-webkit-scrollbar {
+    display: none;
+}
+
+.layoutdivcollapsed{
+    filter: brightness(0.5);
+    min-height: 100%;
+    min-width: 100%;
+}

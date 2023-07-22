@@ -1,0 +1,63 @@
+
+.body{
+    background: #f2f2f2;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100vh;
+    flex-direction: column;
+}
+.wrapper{
+    min-height: 200px;
+    width: 320px;
+    border: 1px solid #f3f3f3;
+    background: #fff;
+    border-radius: 3px;
+}
+
+.formContent{
+    padding: 50px 30px 60px;
+}
+
+.inputBox{
+    position: relative;
+    margin-bottom: 30px;
+    display: flex;
+}
+.inputBox input{
+    border: none;
+    outline: none;
+    padding: 5px 5px 8px 0px;
+    width: 95%;
+    font-size: 18px;
+    border-bottom: solid 1px #efefef;
+}
+.inputBox input:focus{
+    border-bottom: 1px solid #82c2ff;
+}
+
+.inputBox button{
+    border: none;
+    background-color: #3ca9e2;
+    color: #fff;
+    text-transform: uppercase;
+    cursor: pointer;
+    font-size: 18px;
+    cursor: pointer;
+    border-radius: 5px;
+    width: 100%;
+    height: 50px;
+    transition-duration: 0.4s;
+
+}
+.inputBox button:hover{
+    background-color: #3695c9;
+}
+.inputBox button:active{
+    background-color: #226081;
+}
+
+input[aria-invalid='true']::placeholder {
+    color: rgba(255, 0, 0, 0.7);
+}
