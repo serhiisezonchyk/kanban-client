@@ -1,0 +1,41 @@
+.body {
+  @apply flex justify-center items-center w-full h-screen flex-col bg-light;
+  .logo-name {
+    @apply font-mono text-[24px] flex h-[35px] text-primary mb-[10px];
+
+    span {
+      @apply text-dark font-semibold;
+    }
+  }
+  .wrapper {
+    @apply min-h-[230px] w-[360px] bg-white rounded-[5px];
+    .form-content {
+      @apply p-[30px] pb-[60px];
+      h2 {
+        @apply flex justify-center mb-[30px];
+      }
+      .names-box {
+        @apply flex;
+      }
+      .input-box {
+        @apply relative flex mb-[30px];
+        input {
+          @apply border-0 outline-none w-full border-2 border-transparent border-b-light focus:border-b-primary-light;
+          &.invalid-data {
+            @apply border-b-red;
+            &::placeholder {
+              @apply text-red;
+            }
+          }
+        }
+
+        .error {
+          @apply text-red block text-sm absolute top-[30px] flex justify-end w-full;
+        }
+        button {
+          @apply border-0 mt-[10px] uppercase text-white cursor-pointer bg-primary text-[18px] w-full h-[38px] bg-primary hover:bg-primary-hovered active:text-grey;
+        }
+      }
+    }
+  }
+}

@@ -1,6 +1,7 @@
-import { MAIN_ROUTE, LOGIN_ROUTE } from './utils/consts';
+import { MAIN_ROUTE, LOGIN_ROUTE, REGISTRATION_ROUTE } from './utils/consts';
 import Main from './pages/main/Main';
 import Login from './pages/auth/Auth';
+import Registration from './pages/registration/Registration';
 // export const authRoutes = [
 //   {
 //     path: SUPERUSER_ROUTE,
@@ -16,5 +17,9 @@ export const publicRoutes = [
   {
     path: LOGIN_ROUTE,
     Component: Login,
+  },
+  {
+    path: REGISTRATION_ROUTE,
+    Component: Registration,
   },
 ];

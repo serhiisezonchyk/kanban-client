@@ -1,0 +1,19 @@
+.progress-container {
+  @apply flex items-center;
+
+  progress {
+    @apply flex ml-[12px] ;
+    transition: all 0.5s ease;
+    &::-webkit-progress-bar{
+        @apply rounded-[10px] bg-light;
+
+    }
+    &::-webkit-progress-value{
+        @apply rounded-[10px] bg-primary transition-all duration-300 ease-in;
+    }
+    
+  }
+  p{
+    @apply mt-0 mr-0 mb-0 ml-[10px];
+  }
+}

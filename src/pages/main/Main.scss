@@ -1,0 +1,15 @@
+.width-calc-230 {
+  width: calc(100% - 230px);
+}
+
+.width-calc-60 {
+  width: calc(100% - 60px);
+}
+
+.content {
+  @apply relative left-[230px] width-calc-230 duration-300 ease-in ease-out overflow-y-hidden;
+
+  &.closed {
+    @apply width-calc-60 left-[60px];
+  }
+}

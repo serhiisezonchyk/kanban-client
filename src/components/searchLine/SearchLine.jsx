@@ -1,13 +1,13 @@
 import React from 'react';
-import styles from './SearchLine.module.css';
+import'./SearchLine.scss';
 const SearchLine = ({ filter, setFilter }) => {
   return (
-    <div className={styles.searchdiv}>
+    <div className='search-div'>
       <input
         type='search'
         value={filter.query}
         onChange={(e) => setFilter({...filter, query: e.target.value})}
-        placeholder='Знайти...'
+        placeholder='Find...'
       />
     </div>
   );

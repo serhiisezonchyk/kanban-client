@@ -1,11 +1,10 @@
 import React from 'react';
-import { LockOutlined, UserOutlined } from '@ant-design/icons';
 import { useForm } from 'react-hook-form';
-
-import { Button, Form, Input } from 'antd';
-
-import styles from './Auth.module.css';
+import {useDispatch} from 'react-redux';
+import './Auth.scss';
+import { login } from '../../store/services/user.service';
 function Auth() {
+  const dispatch = useDispatch();
   const {
     register,
     handleSubmit,
@@ -15,51 +14,47 @@ function Auth() {
     mode: 'onChange',
   });
   const onSubmit = async (values) => {
-    console.log(values);
     reset();
-    //   const data = await dispatch(
-    //     fetchLogin({ email: values.login, password: values.password })
-    //   );
-    //   if (!data.payload) {
-    //     Modal.error({
-    //       title: "Помилка авторизації",
-    //       content: <>Неправильний логін або пароль</>,
-    //     });
-    //   }
-    //   if ("token" in data.payload) {
-    //     window.localStorage.setItem("token", data.payload.token);
-    //   }
+    const data = await dispatch(
+      login(values)
+    );
+    console.log(data)
+    // if (!data.payload) {
+    //   console.log(data)
+    // }
+    // if ('token' in data.payload) {
+    //   window.localStorage.setItem('token', data.payload.token);
+    // }
   };
   return (
-    <div className={styles.body}>
-      <h1>Name</h1>
+    <div className='body'>
+      <div className='logo-name'>
+        <span>Air</span>Plan
+      </div>
 
-      <div className={styles.wrapper}>
-        <div className={styles.formContent}>
-          <h2 style={{ marginTop: 0 }}>Авторизуватися</h2>
-          <form onSubmit={handleSubmit(onSubmit)} className={styles.formAuth}>
-            <div className={styles.inputBox}>
+      <div className='wrapper'>
+        <div className='form-content'>
+          <h2>Log In</h2>
+          <form onSubmit={handleSubmit(onSubmit)} className='form-auth'>
+            <div className='input-box'>
               <input
-                placeholder='Логін...'
-                {...register('login', { required: 'name' })} 
-                style={errors.login&&{borderBottom: '1px solid red'}}
-                aria-invalid={errors.login?true:false}
-
+                placeholder='Email...'
+                {...register('email', { required: 'name' })}
+                className={errors.email && 'invalid-data'}
               />
-              {errors.login && <span style={{color:"red"}}>*</span>}
+              {errors.email && <span style={{ color: 'red' }}>*</span>}
             </div>
-            <div className={styles.inputBox}>
+            <div className='input-box'>
               <input
-                placeholder='Пароль...'
+                placeholder='Password...'
                 type='password'
                 {...register('password', { required: true })}
-                style={errors.password&&{borderBottom: '1px solid red'}}
-                aria-invalid={errors.password?true:false}
+                className={errors.password && 'invalid-data'}
               />
-              {errors.password && <span style={{color:"red"}}>*</span>}
+              {errors.password && <span style={{ color: 'red' }}>*</span>}
             </div>
-            <div className={styles.inputBox}>
-              <button>Авторизуватися</button>
+            <div className='input-box'>
+              <button>Confirm</button>
             </div>
           </form>
         </div>

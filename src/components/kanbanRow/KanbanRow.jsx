@@ -1,5 +1,5 @@
 import React from "react";
-import styles from "./KanbanRow.module.css";
+import "./KanbanRow.scss";
 
 import { Draggable } from "react-beautiful-dnd";
 import { Card } from "antd";
@@ -9,6 +9,7 @@ function KanbanRow({ item, index }) {
   const grid = 8;
   const getItemStyle = (isDragging, draggableStyle) => ({
     userSelect: "none",
+    height: "100px",
     padding: grid/2,
     margin: `0 0 ${grid}px 0`,
     background: isDragging ? "#d5d5d5" : "#b5b5b536",
@@ -27,7 +28,7 @@ function KanbanRow({ item, index }) {
             provided.draggableProps.style
           )}
         >
-          <div className={styles.cardBody}> 
+          <div className='card-body'> 
             <p>{item.info}</p>
           </div>
         </div>

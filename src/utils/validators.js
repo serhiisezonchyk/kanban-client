@@ -1,0 +1,34 @@
+import {z} from "zod"
+export const registerValidation = z.object({
+  email: z.string({required_error:'Email is required.'}).email('Invalid email.'),
+  password: z.string().min(6,'Password is shorter of 6 s.'),
+  second_password: z.string(),
+  first_name: z.string().min(1," "),
+  last_name: z.string().min(1," "),
+  country: z.string().min(1,'Country is required.'),
+  phone: z.string().min(10,'Invalid phone'),
+}).refine((data)=>data.password === data.second_password,{
+  path:['second_password'],
+  message:'Passwords are diff',
+});
+
+export const groupValidation = z.object({
+  label: z.string({required_error: "Group name is required."}),
+});
+
+
+export const categoryValidation = z.object({
+  label: z.string({required_error:"Column name is required."})
+})
+
+export const taskValidation = z.object({
+  title: z.string({required_error:"Title is required"}),
+  description: z.string().optional(),
+  deadline_date: z.date().optional(),
+  importance: z.boolean().optional(),
+});
+
+
+
+
+

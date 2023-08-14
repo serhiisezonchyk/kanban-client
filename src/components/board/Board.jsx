@@ -1,5 +1,5 @@
 import React from 'react';
-import styles from './Board.module.css';
+import  './Board.scss';
 
 import { DragDropContext } from 'react-beautiful-dnd';
 import KanbanColumn from '../kanbanColumn/KanbanColumn';
@@ -44,7 +44,7 @@ function Board() {
       </CustomModal> */}
       <SearchLine filter={filter} setFilter={setFilter} />
       <DragDropContext onDragEnd={onDragEnd}>
-        <div className={styles.board}>
+        <div className='board'>
           {category.map((col, index) => (
             <KanbanColumn
               key={col.id}

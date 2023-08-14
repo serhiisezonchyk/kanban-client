@@ -1,9 +1,8 @@
 import React from "react";
-import styles from "./KanbanColumn.module.css";
+import "./KanbanColumn.scss";
 
 import { Droppable } from "react-beautiful-dnd";
 import KanbanRow from "../kanbanRow/KanbanRow";
-import { Input, Popover } from "antd";
 import ProgressBar from "./progress/ProgressBar";
 
 function KanbanColumn(props) {
@@ -75,10 +74,10 @@ function KanbanColumn(props) {
   };
   return (
     <div>
-      <div className={styles.column}>
+      <div className="column">
         <h3>{title}</h3>
         <div>
-          <button className={styles.buttonSort} onClick={handleSort}>
+          <button className="button-sort" onClick={handleSort}>
             {searchQuery === "ASC" ? (
               <img src="https://cdn-icons-png.flaticon.com/128/25/25243.png" alt=""/>
             ) : (

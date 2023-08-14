@@ -1,0 +1,11 @@
+.custom-modal{
+    @apply fixed top-0  bottom-0 right-0 left-0 hidden bg-grey-transparent;
+ 
+    .custom-modal-content{
+        @apply p-[20px] bg-white border-[10px] min-w-[250px];
+    }
+    &.active{
+        @apply flex justify-center items-center z-[2];
+    }
+}
+

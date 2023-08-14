@@ -1,0 +1,17 @@
+.column {
+    @apply flex justify-between items-center;
+    h3{
+        @apply flex ml-[12px] mt-0 mb-0 mr-0 ml-[15px] font-mono; 
+    }
+    img{
+        @apply h-[15px];
+    }
+}
+
+.button-search{
+    @apply bg-transparent border-0 cursor-pointer;
+}
+
+.button-sort{
+    @apply bg-transparent border-0 cursor-pointer mr-[60px];
+}

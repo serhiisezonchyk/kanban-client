@@ -1,15 +1,15 @@
 import React from "react";
+import './ProgressBar.scss';
 
 function ProgressBar({max, value}) {
   return (
-    <div style={{ display: "flex", alignItems: "center" }}>
+    <div className='progress-container'>
       <progress
-        style={{ display: "flex", marginLeft: "12px" }}
         id="file"
         max={max}
         value={value}
       />
-      <p style={{ margin: "0px 0px 0px 10px" }}>
+      <p>
         {value}/{max}
       </p>
     </div>
