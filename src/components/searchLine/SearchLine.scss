@@ -1,7 +1,7 @@
 .search-div{
     @apply flex m-[12px];
     input {
-        @apply h-[25px] mr-[5px] outline-none transition duration-[0.4s] ease-in-out;
+        @apply h-[25px] mr-[5px] outline-none transition duration-[0.4s] ease-in-out text-[20px];
         &::-webkit-search-cancel-button {
             @apply cursor-pointer;
             filter: grayscale(100%);

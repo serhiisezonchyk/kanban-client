@@ -18,7 +18,7 @@
         @apply flex;
       }
       .input-box {
-        @apply relative flex mb-[30px];
+        @apply  relative flex mb-[30px] flex flex-col ;
         input {
           @apply border-0 outline-none w-full border-2 border-transparent border-b-light focus:border-b-primary-light;
           &.invalid-data {
@@ -28,12 +28,14 @@
             }
           }
         }
-
         .error {
           @apply text-red block text-sm absolute top-[30px] flex justify-end w-full;
         }
         button {
           @apply border-0 mt-[10px] uppercase text-white cursor-pointer bg-primary text-[18px] w-full h-[38px] bg-primary hover:bg-primary-hovered active:text-grey;
+        }
+        a{
+            @apply flex justify-end mt-[5px] cursor-pointer text-primary;
         }
       }
     }

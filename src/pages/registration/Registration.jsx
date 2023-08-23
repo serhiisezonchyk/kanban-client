@@ -2,13 +2,17 @@ import React from 'react';
 import { useForm } from 'react-hook-form';
 
 import '../auth/Auth.scss';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { create } from '../../store/services/user.service';
 import { registerValidation } from '../../utils/validators';
 import { zodResolver } from '@hookform/resolvers/zod';
+import { Link, Navigate } from 'react-router-dom';
+import { selectIsAuth } from '../../store/slices/auth.slice';
+import { GROUPS_ROUTE, LOGIN_ROUTE, MAIN_ROUTE } from '../../utils/consts';
 
 const Registration = () => {
   const dispatch = useDispatch();
+  const isAuth = useSelector(selectIsAuth);
 
   const formSchemaObject = zodResolver(registerValidation);
   const {
@@ -22,8 +26,11 @@ const Registration = () => {
   });
   const onSubmit = async (values) => {
     const data = await dispatch(create(values));
+    if (data?.error?.message) alert(data?.error?.message);
     reset();
   };
+
+  if (isAuth) return <Navigate to={GROUPS_ROUTE} />;
   return (
     <div className='body'>
       <div className='logo-name'>
@@ -104,11 +111,12 @@ const Registration = () => {
                 {...register('phone')}
                 className={errors.phone && 'invalid-data'}
               />
-                {errors.phone && (
-                  <span role='alert' className='error'>
-                    {errors.phone?.message}
-                  </span>
-                )}            </div>
+              {errors.phone && (
+                <span role='alert' className='error'>
+                  {errors.phone?.message}
+                </span>
+              )}{' '}
+            </div>
             <div className='input-box'>
               <input type='file' {...register('avatar_url')} />
               {errors.avatar_url && (
@@ -131,6 +139,7 @@ const Registration = () => {
             </div>
             <div className='input-box'>
               <button>Confirm</button>
+              <Link to={LOGIN_ROUTE}>Back to log in...</Link>
             </div>
           </form>
         </div>

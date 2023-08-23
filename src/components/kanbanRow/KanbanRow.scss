@@ -1,4 +1,56 @@
-.card-body{
-    @apply flex;
-    
+.dragable-item {
+  @apply border-[1px] border-l-[4px] border-primary min-h-[100px] h-[100px] mb-[8px] rounded-[3px] shadow-md bg-white;
+
+  &.dragged{
+    @apply border-primary-dark;
+  }
+  &.added{
+    @apply border-success min-h-[115px] h-[117px];
+  }
+  &.overdue{
+    @apply border-danger;
+  }
+  input{
+    @apply outline-none border-[1px] border-transparent border-b-grey;
+  }
+  .card-body {
+    @apply flex flex-col relative;
+    .card-title {
+        @apply flex m-[5px] justify-between;
+        .importance-indicator {
+          @apply inline-block w-[16px] h-[16px] border-[50%]  rounded-full cursor-pointer border;
+          &.important {
+            @apply border border-danger bg-danger;
+          }
+        }
+      }
+      .card-dates{
+        @apply flex flex-col items-start m-[5px];
+        p{
+            @apply text-grey-dark text-[13px];
+            span{
+                @apply text-black text-[12px];
+                &.is-deadline{
+                    @apply text-warning;
+                    &.is-overdue{
+                      @apply text-danger;
+                  }
+                } 
+
+            }
+        }
+      }
+      p,
+      span {
+        @apply font-sans text-[14px];
+      }
+      .buttons{
+        @apply flex flex-row justify-end m-[5px];
+        button{
+          @apply ml-[15px] flex justify-center items-center w-[40px] rounded-[3px] hover:bg-light;
+        }
+      }
+  }
+  
 }
+

@@ -1,5 +1,5 @@
 .sidebar {
-  @apply fixed top-0 left-0 bg-white w-[230px] h-screen z-50 overflow-x-hidden flex flex-col justify-between;
+  @apply bg-white min-w-[170px] w-[230px] h-screen z-50 overflow-x-hidden flex flex-col justify-between;
   transition: all 0.3s ease;
   scrollbar-width: none;
 
@@ -52,7 +52,7 @@
 }
 
 .close {
-  @apply w-[60px];
+  @apply min-w-[60px] w-[60px];
   .side-menu {
     li {
       a {

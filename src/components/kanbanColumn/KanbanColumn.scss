@@ -1,17 +1,49 @@
 .column {
-    @apply flex justify-between items-center;
-    h3{
-        @apply flex ml-[12px] mt-0 mb-0 mr-0 ml-[15px] font-mono; 
-    }
-    img{
-        @apply h-[15px];
-    }
-}
-
-.button-search{
+  @apply flex justify-between items-center  ml-[3px] rounded-t-[5px] font-sans;
+  h3 {
+    @apply flex ml-[12px] mt-0 mb-0 mr-0 ml-[12px] font-sans;
+  }
+  img {
+    @apply h-[15px];
+  }
+  .button-sort {
     @apply bg-transparent border-0 cursor-pointer;
+    svg{
+      @apply h-[20px] w-[20px];
+    }
+  }
+
+  .column-update-form{
+    @apply flex justify-between w-full ml-[12px];
+    input{
+      @apply outline-none border-[1px] border-transparent border-b-grey ;
+    }
+  }
 }
 
-.button-sort{
-    @apply bg-transparent border-0 cursor-pointer mr-[60px];
+.button-search {
+  @apply bg-transparent border-0 cursor-pointer;
+
+}
+
+.add-form {
+  @apply bg-gradient-to-t from-grey rounded-b-[3px] rounded-t-[0px] font-sans text-[13px] cursor-pointer text-center;
+}
+
+.add-column {
+  @apply w-[250px] bg-light border-[1px] border-grey rounded-[5px] shadow-lg;
+
+  .control-form {
+    @apply flex flex-row justify-between;
+    input {
+      @apply m-[3px] outline-none border-[1px] border-transparent border-b-grey bg-light min-w-[160px] w-full;
+    }
+    .buttons {
+      @apply flex justify-center;
+      button {
+        @apply text-[18px] m-[8px] p-[3px] items-center rounded-[3px] hover:bg-grey w-[25px];
+      }
+    }
+  }
+
 }

@@ -1,36 +1,53 @@
 import React from 'react';
 import './Sidebar.scss';
 import logoImage from '../../assets/logo.png';
-const Sidebar = ({ close, toggleSidebar,activeComponent, handleSidebarItemClick }) => {
+import { useDispatch, useSelector } from 'react-redux';
+import { authActions, selectIsAuth } from '../../store/slices/auth.slice';
+import { Link } from 'react-router-dom';
+import { ACCOUNT_ROUTE, GROUPS_ROUTE, NOTES_ROUTE } from '../../utils/consts';
+const Sidebar = () => {
+  const [close, setClose] = React.useState(true);
+
+  const toggleSidebar = () => {
+    setClose(!close);
+  };
+
+  const dispatch = useDispatch();
+  const handleLogout = () => {
+    dispatch(authActions.logout());
+  };
+  const isAuth = useSelector(selectIsAuth);
+  if (!isAuth) return;
+
   return (
-    <div className={`sidebar ${close&&'close'}`}>
+    <div className={`sidebar ${close ? 'close':''}`}>
       <div>
-        <a href='' className='logo'>
+        <Link to={GROUPS_ROUTE} className='logo'>
           <img src={logoImage}></img>
           <div className='logo-name'>
             <span>Air</span>Plan
           </div>
-        </a>
+        </Link>
         <ul className='side-menu'>
-          <li className={activeComponent==='account'&&'active'}>
-            <a onClick={() => handleSidebarItemClick('account')}>
+          <li>
+            <Link to={ACCOUNT_ROUTE}>
               <i className='bx bxs-user-account'></i>My account
-            </a>
+            </Link>
           </li>
-          <li className={activeComponent==='board'&&'active'}>
-            <a onClick={() => handleSidebarItemClick('board')}>
+          <li>
+            <Link to={GROUPS_ROUTE}>
               <i className='bx bx-chalkboard'></i>Projects
-            </a>
+            </Link>
           </li>
-          <li className={activeComponent==='notes'&&'active'}>
-            <a onClick={() => handleSidebarItemClick('notes')}>
+          <li>
+            <Link to={NOTES_ROUTE}>
               <i className='bx bx-edit-alt'></i> Notes{' '}
-            </a>
+            </Link>
           </li>
         </ul>
         <ul className='side-menu'>
           <li>
-            <a href='#' className='logout'>
+            <a onClick={handleLogout} className='logout'>
               <i className='bx bx-log-out-circle'></i>logout
             </a>
           </li>
@@ -41,7 +58,9 @@ const Sidebar = ({ close, toggleSidebar,activeComponent, handleSidebarItemClick 
         <ul className='side-menu'>
           <li>
             <a onClick={toggleSidebar} className='toogle'>
-              <i className={close?'bx bx-chevron-right':'bx bx-chevron-left'}></i>
+              <i
+                className={close ? 'bx bx-chevron-right' : 'bx bx-chevron-left'}
+              ></i>
             </a>
           </li>
         </ul>

@@ -1,9 +1,14 @@
 import { configureStore } from '@reduxjs/toolkit';
-import { authReduces } from './slices/auth.slice';
-
+import { authReducer } from './slices/auth.slice';
+import { groupsReducer } from './slices/group.slice';
+import { categoriesReducer } from './slices/category.slice';
+import { tasksReducer } from './slices/task.slice';
 const store = configureStore({
     reducer: {
-        auth: authReduces
+        auth: authReducer,
+        groups:groupsReducer,
+        categories: categoriesReducer,
+        tasks: tasksReducer,
     }
 })
 

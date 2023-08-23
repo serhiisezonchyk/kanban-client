@@ -1,31 +1,36 @@
 import React from 'react';
 import { useForm } from 'react-hook-form';
-import {useDispatch} from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import './Auth.scss';
 import { login } from '../../store/services/user.service';
+import { Link, Navigate } from 'react-router-dom';
+import { selectIsAuth } from '../../store/slices/auth.slice';
+import { GROUPS_ROUTE, MAIN_ROUTE, REGISTRATION_ROUTE } from '../../utils/consts';
 function Auth() {
   const dispatch = useDispatch();
+  const isAuth = useSelector(selectIsAuth);
+
   const {
     register,
     handleSubmit,
     formState: { errors },
+    setValue,
     reset,
   } = useForm({
     mode: 'onChange',
   });
   const onSubmit = async (values) => {
-    reset();
-    const data = await dispatch(
-      login(values)
-    );
-    console.log(data)
-    // if (!data.payload) {
-    //   console.log(data)
-    // }
-    // if ('token' in data.payload) {
-    //   window.localStorage.setItem('token', data.payload.token);
-    // }
+    const data = await dispatch(login(values));
+    if (data?.error?.message) {
+      alert(data?.error?.message);
+      setValue('password', '');
+    } else {
+      reset();
+    }
   };
+
+  if (isAuth) return <Navigate to={GROUPS_ROUTE} />;
+
   return (
     <div className='body'>
       <div className='logo-name'>
@@ -42,7 +47,6 @@ function Auth() {
                 {...register('email', { required: 'name' })}
                 className={errors.email && 'invalid-data'}
               />
-              {errors.email && <span style={{ color: 'red' }}>*</span>}
             </div>
             <div className='input-box'>
               <input
@@ -51,10 +55,10 @@ function Auth() {
                 {...register('password', { required: true })}
                 className={errors.password && 'invalid-data'}
               />
-              {errors.password && <span style={{ color: 'red' }}>*</span>}
             </div>
             <div className='input-box'>
               <button>Confirm</button>
+              <Link to={REGISTRATION_ROUTE}>Or register just now...</Link>
             </div>
           </form>
         </div>

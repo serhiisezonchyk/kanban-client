@@ -31,3 +31,6 @@ body{
   /* @apply bg-grey; */
   overflow-x: hidden;
 }
+.main-container{
+  display:  flex;
+}

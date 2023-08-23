@@ -1,0 +1,48 @@
+.group-form {
+  @apply flex m-[15px] flex-col;
+  div {
+    @apply flex flex-row items-center;
+    p {
+      @apply text-grey-dark mt-[12px];
+    }
+    button {
+      @apply bg-primary-light hover:bg-primary w-fit items-center rounded-[5px] text-[17px] justify-center px-[10px] mr-[10px];
+      &.cancel{
+        @apply bg-light hover:bg-grey;
+      }
+      &.delete{
+        @apply bg-danger-light hover:bg-danger;
+      }
+      &.update{
+        @apply bg-warning-light hover:bg-warning;
+      }
+      svg{
+        @apply h-[25px];
+      }
+    }
+    input{
+      @apply outline-none border-[1px] border-transparent border-b-grey mt-[5px];
+      &.lable-input{
+        @apply text-[25px];
+      }
+    }
+  }
+  .lable-form {
+    p {
+      @apply text-[24px] text-black mt-0;
+    }
+    svg {
+      @apply ml-[40px] w-[24px] h-[24px] cursor-pointer;
+      &.important {
+        @apply text-warning;
+      }
+    }
+  }
+}
+
+.vl {
+  @apply bg-transparent border-light border-l-[1px] h-[40px] m-[6px];
+}
+.hl {
+  @apply bg-transparent border-light border-t-[1px] w-full mb-[6px];
+}

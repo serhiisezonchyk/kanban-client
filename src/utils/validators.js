@@ -24,7 +24,6 @@ export const categoryValidation = z.object({
 export const taskValidation = z.object({
   title: z.string({required_error:"Title is required"}),
   description: z.string().optional(),
-  deadline_date: z.date().optional(),
   importance: z.boolean().optional(),
 });
 

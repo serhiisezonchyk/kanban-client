@@ -1,95 +1,94 @@
-import React from "react";
-import "./KanbanColumn.scss";
+import React from 'react';
+import './KanbanColumn.scss';
 
-import { Droppable } from "react-beautiful-dnd";
-import KanbanRow from "../kanbanRow/KanbanRow";
-import ProgressBar from "./progress/ProgressBar";
+import { Droppable } from 'react-beautiful-dnd';
+import KanbanRow from '../kanbanRow/KanbanRow';
+import ProgressBar from './progress/ProgressBar';
+import KanbanRowAdd from '../kanbanRow/KanbanRowAdd';
+import TitleColumnInput from './TitleColumnInput';
+import { AiOutlineSortAscending, AiOutlineSortDescending } from 'react-icons/ai';
+import dayjs from 'dayjs';
 
-function KanbanColumn(props) {
-  const { title, droppableId, index, item } = props;
-  const [items, setItems] = React.useState([]);
-  const [searchQuery, setSearchQuery] = React.useState("ASC");
+function KanbanColumn({ lable, droppableId, index, searchable_tasks, isAdding, setIsAdding }) {
+  const [columnTasks, setColumnTasks] = React.useState([]);
+  const [searchQuery, setSearchQuery] = React.useState('ASC');
   const [sortedItems, setSortedItems] = React.useState([]);
-
+  const [isUpdating, setIsUpdating] = React.useState(false);
   React.useEffect(() => {
-    if (item) {
-      const filteredItems = props.item.filter(
-        (i) => i.categoryId === droppableId
+    if (searchable_tasks) {
+      const filteredItems = searchable_tasks.filter(
+        (i) => i.category_id === droppableId
       );
-      setItems(filteredItems);
+      setColumnTasks(filteredItems);
       setSortedItems(
         filteredItems.sort(function (a, b) {
-          if (a.info > b.info) {
+          if (a.title > b.title) {
             return 1;
           }
-          if (a.info < b.info) {
+          if (a.title < b.title) {
             return -1;
           }
           return 0;
         })
       );
     }
-  }, [item]);
+  }, [searchable_tasks]);
   const grid = 8;
   const getListStyle = (isDraggingOver) => ({
-    background: isDraggingOver ? "#8dcefd61" : "white",
+    background: isDraggingOver ? '#8dcefd61' : 'white',
     padding: grid,
     width: 250,
-    marginLeft: "5px",
-    borderRadius: "5px",
-    height:isDraggingOver ? "95%" : "95%",
+    marginLeft: '5px',
+    borderRadius: '5px',
+    height: isDraggingOver ? '95%' : '95%',
   });
 
-  const handleSearch = () => {
-    // Perform search logic based on searchQuery
-    // Update items and sortedItems state with search results
-  };
-
-  const handleSort = () => {
-    if (searchQuery === "ASC") {
-      setSearchQuery("DESC");
-      const data = sortedItems.sort(function (a, b) {
-        if (a.info > b.info) {
-          return -1;
-        }
-        if (a.info < b.info) {
-          return 1;
-        }
-        return 0;
+  const handleSort = (e) => {
+    if (searchQuery === 'ASC') {
+      setSearchQuery('DESC');
+      const data = sortedItems.sort((a, b) => {
+        const dateA = a.deadline_date ? dayjs(a.deadline_date) : null;
+        const dateB = b.deadline_date ? dayjs(b.deadline_date) : null;
+  
+        if (!dateA && !dateB) return 0;
+        if (!dateA) return -1;
+        if (!dateB) return 1;
+  
+        return dateB.diff(dateA);
       });
       setSortedItems(data);
     } else {
-      setSearchQuery("ASC");
-      const data = sortedItems.sort(function (a, b) {
-        if (a.info > b.info) {
-          return 1;
-        }
-        if (a.info < b.info) {
-          return -1;
-        }
-        return 0;
+      setSearchQuery('ASC');
+      const data = sortedItems.sort((a, b) => {
+        const dateA = a.deadline_date ? dayjs(a.deadline_date) : null;
+        const dateB = b.deadline_date ? dayjs(b.deadline_date) : null;
+  
+        if (!dateA && !dateB) return 0;
+        if (!dateA) return 1;
+        if (!dateB) return -1;
+  
+        return dateA.diff(dateB);
       });
       setSortedItems(data);
     }
   };
   return (
-    <div>
-      <div className="column">
-        <h3>{title}</h3>
+    <div className='col' onClick={() => setIsAdding(false)}>
+      <div className='column' onDoubleClick={()=>setIsUpdating(!isUpdating)}>
+        {isUpdating?<TitleColumnInput id={droppableId} value={lable} setIsUpdating={setIsUpdating}/>:<>
+        <h3>{lable}</h3>
         <div>
-          <button className="button-sort" onClick={handleSort}>
-            {searchQuery === "ASC" ? (
-              <img src="https://cdn-icons-png.flaticon.com/128/25/25243.png" alt=""/>
+          <button className='button-sort' onClick={handleSort}>
+            {searchQuery === 'ASC' ? (
+              <AiOutlineSortAscending/>
             ) : (
-              <img src="https://cdn-icons-png.flaticon.com/128/25/25330.png" alt=""/>
+             <AiOutlineSortDescending/>
             )}
           </button>
-        </div>
+        </div></>}
+
       </div>
-
-
-      <ProgressBar max={props.item.length} value = {items.length}/>
-
+      <ProgressBar max={searchable_tasks?.length} value={columnTasks?.length} />
       <Droppable key={index} droppableId={`${droppableId}`} index={index}>
         {(provided, snapshot) => (
           <div
@@ -101,6 +100,20 @@ function KanbanColumn(props) {
               <KanbanRow key={item.id} item={item} index={index} />
             ))}
             {provided.placeholder}
+            {index === 0 &&
+              (isAdding ? (
+                <KanbanRowAdd category_id={droppableId} setIsAdding={setIsAdding}/>
+              ) : (
+                <div
+                  className='add-form'
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    setIsAdding(true);
+                  }}
+                >
+                  +Add
+                </div>
+              ))}
           </div>
         )}
       </Droppable>
@@ -108,5 +121,4 @@ function KanbanColumn(props) {
   );
 }
 
-// export default React.memo(KanbanColumn);
-export default KanbanColumn;
+export default React.memo(KanbanColumn);

@@ -1,0 +1,77 @@
+.task-container {
+  @apply m-[15px] flex flex-col w-full;
+  .task-title-container {
+    @apply flex flex-row items-center;
+    p {
+      @apply text-black text-[25px] ml-[15px];
+    }
+    svg {
+      @apply w-[25px] h-[25px] cursor-pointer;
+      &.important {
+        @apply text-warning ;
+      }
+    }
+    input{
+      @apply outline-none border-[1px] border-transparent border-b-grey text-[25px] ml-[15px];
+    }
+  }
+  .task-info-container {
+    @apply flex sm:flex-row flex-col m-[5px] border-[1px] border-light px-[15px] py-[10px] w-full justify-between;
+    &.is-overdue{
+      @apply border-danger;
+    }
+    .table {
+      @apply flex items-end first:pb-[15px] sm:first:pb-[0px];
+      td {
+        @apply pr-[15px];
+        &.title-col {
+          @apply font-bold;
+          &.is-overdue{
+            @apply text-danger;
+          }
+        }
+      }
+    }
+  }
+  .updated-date {
+    @apply flex  justify-start  text-grey-dark text-[15px] items-center md:justify-end;
+
+    span {
+      @apply text-warning text-[13px] ml-[10px] flex items-center;
+    }
+  }
+
+  .description-container {
+    @apply w-full h-full mt-[15px];
+    #simplemde-editor-1-wrapper {
+      @apply h-full;
+
+      .EasyMDEContainer {
+        @apply h-[90%];
+        p{
+          @apply font-sans font-extralight;
+        }
+        .CodeMirror {
+          @apply h-[90%] max-h-[500px];
+          .CodeMirror-scroll {
+            @apply max-h-[90%] ;
+          }
+        }
+      }
+    }
+  }
+  .buttons{
+    @apply flex flex-row justify-between ;
+    button{
+      @apply bg-light h-[50px] w-[100px]  rounded-[3px]  transition duration-300 ease-in-out hover:bg-grey;
+
+      &.update{
+        @apply bg-warning-light hover:bg-warning;
+      }
+
+      &.delete{
+        @apply bg-danger-light hover:bg-danger mr-[15px];
+      }
+    }
+  }
+}
