@@ -85,7 +85,7 @@ const TaskPage = () => {
     navigate(-1);
   };
   const handleImportanceClick = () => {
-    setImportance(!importance);
+    setImportance(importance=>!importance);
     const values = {
       importance: !importance,
     };

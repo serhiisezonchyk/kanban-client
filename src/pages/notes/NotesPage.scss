@@ -1,0 +1,24 @@
+.notes-container {
+  @apply flex flex-col w-full m-[10px] max-h-[90%];
+  #simplemde-editor-1-wrapper {
+    @apply w-full h-[90%] max-h-[90%];
+    .EasyMDEContainer {
+      @apply w-full h-[90%] max-h-[90%];
+      p {
+        @apply font-sans font-extralight;
+      }
+      .CodeMirror {
+        @apply h-full min-h-[500px] max-h-[90%];
+        .CodeMirror-scroll {
+          @apply max-h-[90%];
+        }
+      }
+    }
+  }
+  .buttons{
+    @apply flex justify-end mr-[10px];
+    button{
+        @apply bg-success-light px-[20px] py-[10px] rounded-[5px] transition duration-300 ease-in-out hover:bg-success hover:text-white; 
+    }
+  }
+}

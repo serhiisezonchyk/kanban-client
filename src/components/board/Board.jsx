@@ -70,6 +70,7 @@ function Board() {
         setIsAddingRow(false);
         setIsAddingCol(false);
       }}
+      className='board-page'
     >
       <GroupInfo
         group_id={id}

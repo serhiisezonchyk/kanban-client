@@ -1,3 +1,6 @@
-.board {
+.board-page {
+  @apply overflow-scroll;
+  .board {
     @apply flex flex-row justify-start;
+  }
 }

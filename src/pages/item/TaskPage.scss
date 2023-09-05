@@ -1,5 +1,5 @@
 .task-container {
-  @apply m-[15px] flex flex-col w-full;
+  @apply m-[15px] flex flex-col w-full overflow-scroll;
   .task-title-container {
     @apply flex flex-row items-center;
     p {
