@@ -7,6 +7,7 @@ function App() {
   React.useEffect(() => {
     dispatch(check());
   }, []);
+
   return <AppRouter />;
 }
 

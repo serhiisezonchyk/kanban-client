@@ -3,7 +3,7 @@
   .task-title-container {
     @apply flex flex-row items-center;
     p {
-      @apply text-black text-[25px] ml-[15px];
+      @apply text-black  text-[15px] sm:text-[25px] ml-[15px];
     }
     svg {
       @apply w-[25px] h-[25px] cursor-pointer;
@@ -12,7 +12,7 @@
       }
     }
     input{
-      @apply outline-none border-[1px] border-transparent border-b-grey text-[25px] ml-[15px];
+      @apply outline-none border-[1px] border-transparent border-b-grey text-[20px] sm:text-[25px] ml-[15px];
     }
   }
   .task-info-container {
@@ -62,15 +62,15 @@
   }
   .buttons{
     @apply flex flex-row justify-between ;
-    button{
-      @apply bg-light h-[50px] w-[100px]  rounded-[3px]  transition duration-300 ease-in-out hover:bg-grey;
+    svg{
+      @apply text-[30px] cursor-pointer text-grey-dark mr-[20px] transition duration-300 ease-in-out sm:hover:scale-125;
 
       &.update{
-        @apply bg-warning-light hover:bg-warning;
+        @apply text-warning;
       }
 
       &.delete{
-        @apply bg-danger-light hover:bg-danger mr-[15px];
+        @apply text-danger;
       }
     }
   }

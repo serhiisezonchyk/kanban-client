@@ -41,7 +41,7 @@ const Sidebar = () => {
           </li>
           <li>
             <Link to={NOTES_ROUTE}>
-              <i className='bx bx-edit-alt'></i> Notes{' '}
+              <i className='bx bx-edit-alt'></i> Notes
             </Link>
           </li>
         </ul>

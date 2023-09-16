@@ -11,6 +11,8 @@ import {
   getOneTask,
   updateTask,
 } from '../../store/services/task.service';
+import {AiFillDelete,AiFillEdit} from 'react-icons/ai';
+import {BiArrowBack} from 'react-icons/bi';
 import dayjs from 'dayjs';
 
 const TaskPage = () => {
@@ -168,14 +170,10 @@ const TaskPage = () => {
           />
         </div>
         <div className='buttons'>
-          <button onClick={() => navigate(-1, { replace: false })}>Back</button>
-          <div>
-            <button className='delete' onClick={handleOnDelete}>
-              Delete
-            </button>
-            <button className='update' onClick={handleOnUpdate}>
-              Update
-            </button>
+          <BiArrowBack onClick={() => navigate(-1, { replace: false })}/>
+          <div className='flex'>
+            <AiFillDelete className='delete' onClick={handleOnDelete}/>
+            <AiFillEdit className='update' onClick={handleOnUpdate}/>
           </div>
         </div>
       </div>
